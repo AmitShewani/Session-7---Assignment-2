@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment 7.2 - Front End Web Development Fundamentals</title>
+	<style type="text/css">
+		/*Applying basic style to h1 and body contents*/
+		h1
+		{
+			color:blue;
+			font-size: 30px;
+			font-family: arial;
+			text-decoration: underline;
+		}
+		body
+		{
+			font-size: 18px;
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+<h1>Javascript tutorial to demonstrate closures!</h1>
+<hr>
+<h3>Student details form:</h3><br>
+<form name="Form1">
+<p id="helperNotes"></p>
+<br><p>Name: <input type="text" name="nameField" id="txtBox" onfocus="onFocusNameBox();" required/></p>
+<br><p>Age: <input type="Number" name="ageField" id="ageBox" min ="1" max="99" onfocus="onFocusAgeBox();" required/></p>
+<br><p>City: <input type="text" name="cityField" id="cityBox" onfocus="onFocusCityBox();" required/></p>
+<br><input type="Submit" name="submitBtn" onclick="submitButton();" />
+</form>
+<script type="text/javascript">
+//nameHelper,ageHelper and cityHelper will return the helper note values
+var nameHelper=getNameHelperNote();
+var ageHelper=getAgeHelperNote();
+var cityHelper=getCityHelperNote();
+function getNameHelperNote()
+{
+	var note="Please input the username";
+	return function (){
+		document.getElementById("helperNotes").innerHTML=note;
+	};
+}
+function getAgeHelperNote()
+{
+	var note="Please input the Age";
+	return function (){
+		document.getElementById("helperNotes").innerHTML=note;
+	};
+}
+function getCityHelperNote()
+{
+	var note="Please input the City";
+	return function (){
+		document.getElementById("helperNotes").innerHTML=note;
+	};
+}
+	function onFocusNameBox()
+	{
+		nameHelper();
+	}
+	function onFocusAgeBox()
+	{
+		ageHelper();
+	}
+function onFocusCityBox()
+	{
+		cityHelper();
+	}
+	//on submit, the website would check if any field is empty or not. If it is empty then it will display an alert asking the user to insert all of the required fields. 
+	//user to enter values
+	function submitButton()
+	{
+		var name=document.getElementById("txtBox").value;
+var age=document.getElementById("ageBox").value;
+var city=document.getElementById("cityBox").value;
+		console.log("name: "+name);
+		console.log("age: "+age);
+		console.log("city: "+city);
+		if ((name==='')||(age==='')||(city==='')) 
+		{
+			alert("Please enter all of the field values before submitting!");
+		}
+		else
+		{
+			alert("Thank you");
+		}
+		
+	}
+</script>
+</body>
+</html>
